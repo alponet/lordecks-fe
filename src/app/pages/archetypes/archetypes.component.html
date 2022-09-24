@@ -1,4 +1,7 @@
-<h2>Archetypes</h2>
-<div *ngFor="let archetype of archetypes">
-  {{ archetype.names.toString() }}: {{ archetype.count }}
+<div class="p-2 overflow-y-scroll block h-full max-w-2xl mx-auto">
+  <div *ngFor="let archetype of archetypes" class="flex">
+    <div class="basis-1/2 grow-1">{{ archetype.names.toString() }}</div>
+    <div class="basis-1/4 text-right">{{ (archetype.wins / archetype.count) * 100 | number: '1.1-1' }}</div>
+    <div class="basis-1/4 grow-1 text-right">{{ archetype.count }}</div>
+  </div>
 </div>
