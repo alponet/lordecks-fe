@@ -1,7 +1,14 @@
-<div class="p-2 overflow-y-scroll block h-full max-w-2xl mx-auto">
-  <div *ngFor="let archetype of archetypes" class="flex">
-    <div class="basis-1/2 grow-1">{{ archetype.names.toString() }}</div>
-    <div class="basis-1/4 text-right">{{ (archetype.wins / archetype.count) * 100 | number: '1.1-1' }}</div>
-    <div class="basis-1/4 grow-1 text-right">{{ archetype.count }}</div>
+<div class="px-2 pt-4 mb-10">
+  <div class="flex py-1 bg-gray-100">
+    <div class="flex-shrink flex-grow basis-auto bold text-xs">Archetype</div>
+    <div class="flex-shrink-0 flex-grow-0 basis-14 text-xs px-4">Winrate</div>
+    <div class="flex-shrink-0 flex-grow-0 basis-12 text-xs">Matches</div>
+  </div>
+  <div *ngFor="let archetype of archetypes">
+    <a [routerLink]="['/archetype', archetype._id.toString()]" class="flex py-1 border-t hover:bg-gray-50">
+      <div class="flex-auto basis-auto">{{ archetype.names.toString() }}</div>
+      <div class="flex-none basis-16 text-right font-mono px-4">{{ (archetype.wins / archetype.count) * 100 | number: '1.1-1' }}<span class="text-sm text-gray-400">%</span></div>
+      <div class="flex-none basis-10 text-right font-mono text-sm text-gray-500">{{ archetype.count }}</div>
+    </a>
   </div>
 </div>
