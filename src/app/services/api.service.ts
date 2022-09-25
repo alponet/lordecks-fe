@@ -16,4 +16,9 @@ export class ApiService {
     return this.http.get<any[]>(`${environment.apiUrl}/matches/archetypes`);
   }
 
+
+  getPlayedDecks(archetype: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/matches/playedDecks/${archetype}`);
+  }
+
 }
