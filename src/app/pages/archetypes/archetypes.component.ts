@@ -19,7 +19,7 @@ export class ArchetypesComponent implements OnInit {
     this.apiService.getArchetypes().subscribe(re => {
       this.archetypes = re;
       for (const archetype of this.archetypes) {
-        archetype.names = archetype._id.map((cardCode: string) => this.cardsService.getName(cardCode));
+        archetype.names = archetype._id.map((cardCode: string) => this.cardsService.getChampionName(cardCode));
       }
     });
   }

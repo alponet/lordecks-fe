@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as championsJSON from "../../assets/champions.json";
+import * as cardsJSON from "../../assets/cards.json";
 import { CardCodeAndCount, Deck, getDeckFromCode } from "lor-deckcodes-ts";
 
 
@@ -8,14 +9,21 @@ import { CardCodeAndCount, Deck, getDeckFromCode } from "lor-deckcodes-ts";
 })
 export class CardsService {
   champions: any[] = [];
+  cards: any[] = [];
 
   constructor() {
     this.champions = Object.values(championsJSON);
+    this.cards = Object.values(cardsJSON);
   }
 
-  getName(cardCode: string): string {
+  getChampionName(cardCode: string): string {
     const champion = this.champions.find(i => i.cardCode === cardCode);
     return champion ? champion.name : "None";
+  }
+
+  getCardName(cardCode: string): string {
+    const card = this.cards.find(i => i.cardCode === cardCode);
+    return card ? card.name : "None";
   }
 
   getDeck(deckCode: string): Deck {

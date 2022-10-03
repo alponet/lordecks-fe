@@ -15,7 +15,7 @@ export class ArchetypeComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private cardsService: CardsService
+    public cardsService: CardsService
   ) { }
 
   ngOnInit(): void {
@@ -32,8 +32,8 @@ export class ArchetypeComponent implements OnInit {
         for (let i = 1; i < this.deckList.length; i++) {
           const diff = this.cardsService.getDiff(this.deckList[0]._id, this.deckList[i]._id);
           const additions = diff.filter(i => i.count > 0).sort((a, b) =>  b.count - a.count );
-          const info = additions.map(i => `${i.cardCode} (${i.count})`);
-          this.deckList[i].info = info.toString();
+          const info = additions.map(i => this.cardsService.getCardName(i.cardCode));
+          this.deckList[i].info = info.slice(0, 3).join(', ');
         }
       });
     });
