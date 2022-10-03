@@ -4,10 +4,10 @@
     <div class="flex-shrink-0 flex-grow-0 basis-14 text-xs px-4">Winrate</div>
     <div class="flex-shrink-0 flex-grow-0 basis-12 text-xs">Matches</div>
   </div>
-  <div *ngFor="let deck of deckList" class="flex py-1 border-t">
+  <div *ngFor="let deck of deckList" class="flex py-1 border-t cursor-pointer hover:bg-gray-50">
     <div class="flex-auto basis-auto">
-      <div class="overflow-hidden w-full">{{ deck.info }}</div>
-      <div class="">
+      <div class="overflow-hidden w-full" (click)="deck.showCards = !deck.showCards">{{ deck.info }}</div>
+      <div *ngIf="deck.showCards">
         <div *ngFor="let card of deck.cards" class="font-mono text-xs">{{ this.cardsService.getCardName(card.cardCode) }} ({{ card.count }})</div>
       </div>
     </div>

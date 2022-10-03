@@ -25,6 +25,7 @@ export class ArchetypeComponent implements OnInit {
         this.deckList = decks;
         for (const deck of this.deckList) {
           deck.cards = this.cardsService.getDeck(deck._id);
+          deck.showCards = false;
         }
 
         this.deckList[0].info = "most popular";
