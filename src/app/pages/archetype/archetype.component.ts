@@ -11,6 +11,7 @@ import { CardsService } from "../../services/cards.service";
 export class ArchetypeComponent implements OnInit {
   private archetype: string = "";
   deckList: any[] = [];
+  bgGreen = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,25 @@ export class ArchetypeComponent implements OnInit {
         }
       });
     });
+  }
+
+
+  copyDeckCode(e: Event, deckCode: string) {
+    e.stopPropagation();
+
+    // TODO: navigator.clipboard.writeText(deckCode) is better, but needs https
+
+    let input = document.createElement('textarea');
+    input.innerHTML = deckCode;
+    document.body.appendChild(input);
+    input.select();
+    let result = document.execCommand('copy');
+    document.body.removeChild(input);
+
+    this.bgGreen = true;
+    setTimeout(() => {
+      this.bgGreen = false;
+    }, 300);
   }
 
 }
