@@ -1,14 +1,15 @@
-<div class="px-2 pt-4 mb-10">
+<div class="px-2 pt-4 mb-10" [ngClass]="{ 'bg-green-200': this.bgGreen === true }">
   <div class="flex py-1 bg-gray-100">
     <div class="flex-shrink flex-grow basis-auto bold text-xs">Deck</div>
     <div class="flex-shrink-0 flex-grow-0 basis-14 text-xs px-4">Winrate</div>
     <div class="flex-shrink-0 flex-grow-0 basis-12 text-xs">Matches</div>
   </div>
-  <div *ngFor="let deck of deckList" class="flex py-1 border-t cursor-pointer hover:bg-gray-50">
+  <div *ngFor="let deck of deckList" class="flex py-1 border-t cursor-pointer hover:bg-gray-50 relative" (click)="deck.showCards = !deck.showCards">
     <div class="flex-auto basis-auto">
-      <div class="overflow-hidden w-full" (click)="deck.showCards = !deck.showCards">{{ deck.info }}</div>
-      <div *ngIf="deck.showCards">
-        <div *ngFor="let card of deck.cards" class="font-mono text-xs">{{ this.cardsService.getCardName(card.cardCode) }} ({{ card.count }})</div>
+      <div class="overflow-hidden w-full">{{ deck.info }}</div>
+      <div *ngIf="deck.showCards" class="cursor-default">
+        <div *ngFor="let card of deck.cards" class="text-xs">{{ this.cardsService.getCardName(card.cardCode) }} ({{ card.count }})</div>
+        <div (click)="copyDeckCode($event, deck._id)" class="absolute top-10 right-1 border px-3 py-1.5 rounded-lg text-xs cursor-pointer hover:bg-gray-200">copy to clipboard</div>
       </div>
     </div>
     <div class="flex-none basis-16 text-right font-mono px-4">{{ (deck.wins / deck.count) * 100 | number: '1.1-1' }}<span class="text-sm text-gray-400">%</span></div>
