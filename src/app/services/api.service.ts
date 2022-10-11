@@ -17,6 +17,11 @@ export class ApiService {
   }
 
 
+  getArchetypeStats(archetype: string): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/trends/${archetype}`);
+  }
+
+
   getPlayedDecks(archetype: string): Observable<any[]> {
     return this.http.get<any[]>(`${environment.apiUrl}/matches/playedDecks/${archetype}`);
   }
