@@ -22,7 +22,7 @@ export class ArchetypeComponent implements OnInit {
     labels: [],
     datasets: [{
       label: 'Playrate',
-      yAxisId: 'yr',
+      yAxisID: 'yr',
       data: [],
       fill: true,
       tension: 0.3,
