@@ -49,12 +49,26 @@ export class ArchetypeComponent implements OnInit {
       },
       yl: {
         position: "left",
+        ticks: {
+          format: {
+            style: 'percent',
+            maximumFractionDigits: 1,
+            minimumFractionDigits: 1
+          }
+        },
         grid: {
           display: false
         }
       },
       yr: {
         position: "right",
+        ticks: {
+          format: {
+            style: 'percent',
+            maximumFractionDigits: 1,
+            minimumFractionDigits: 1
+          }
+        },
         grid: {
           display: false
         }
@@ -85,8 +99,8 @@ export class ArchetypeComponent implements OnInit {
       this.chart?.update();
 
       setTimeout(() => {
-        this.archetypeChartData.datasets[0].data = stats.map(el => el.play_rate * 100);
-        this.archetypeChartData.datasets[1].data = stats.map(el => el.win_rate * 100);
+        this.archetypeChartData.datasets[0].data = stats.map(el => el.play_rate);
+        this.archetypeChartData.datasets[1].data = stats.map(el => el.win_rate);
         this.chart?.update();
       }, 100);
     });
