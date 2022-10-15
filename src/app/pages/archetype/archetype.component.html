@@ -14,7 +14,7 @@
     <div class="flex-auto basis-auto">
       <div class="overflow-hidden w-full">{{ deck.info }}</div>
       <div *ngIf="deck.showCards" class="cursor-default">
-        <div *ngFor="let card of deck.cards" class="text-xs">{{ this.cardsService.getCardName(card.cardCode) }} ({{ card.count }})</div>
+        <div *ngFor="let card of deck.cards" class="text-xs">{{ card.name }} ({{ card.count }})</div>
         <div (click)="copyDeckCode($event, deck._id)" class="absolute top-10 right-1 border px-3 py-1.5 rounded-lg text-xs cursor-pointer hover:bg-gray-200">copy to clipboard</div>
       </div>
     </div>

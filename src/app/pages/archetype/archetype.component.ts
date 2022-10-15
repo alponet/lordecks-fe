@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { CardsService } from "../../services/cards.service";
 import { BaseChartDirective } from "ng2-charts";
 import { ChartConfiguration } from "chart.js";
+import { CardCodeAndCount } from "lor-deckcodes-ts";
 
 @Component({
   selector: 'app-archetype',
@@ -112,11 +113,13 @@ export class ArchetypeComponent implements OnInit {
       this.deckList = decks;
       for (const deck of this.deckList) {
         deck.cards = this.cardsService.getDeck(deck._id);
+        deck.cards.forEach((card: CardCodeAndCount & { name: string }) => {
+          card.name = this.cardsService.getCardName(card.cardCode);
+        });
         deck.showCards = false;
       }
 
       this.deckList[0].info = "most popular";
-
       for (let i = 1; i < this.deckList.length; i++) {
         const diff = this.cardsService.getDiff(this.deckList[0]._id, this.deckList[i]._id);
         const additions = diff.filter(i => i.count > 0).sort((a, b) =>  b.count - a.count );
