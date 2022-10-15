@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as championsJSON from "../../assets/champions.json";
 import * as cardsJSON from "../../assets/cards.json";
 import { CardCodeAndCount, Deck, getDeckFromCode } from "lor-deckcodes-ts";
+import { ApiService } from "./api.service";
 
 
 @Injectable({
@@ -11,7 +12,7 @@ export class CardsService {
   champions: any[] = [];
   cards: any[] = [];
 
-  constructor() {
+  constructor(private apiService: ApiService) {
     this.champions = Object.values(championsJSON);
     this.cards = Object.values(cardsJSON);
   }
@@ -23,7 +24,11 @@ export class CardsService {
 
   getCardName(cardCode: string): string {
     const card = this.cards.find(i => i.cardCode === cardCode);
-    return card ? card.name : "None";
+    if (card) {
+      return card.name;
+    }
+    this.apiService.postCardError(cardCode).subscribe();
+    return "None";
   }
 
   getDeck(deckCode: string): Deck {

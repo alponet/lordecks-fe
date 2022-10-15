@@ -26,4 +26,9 @@ export class ApiService {
     return this.http.get<any[]>(`${environment.apiUrl}/matches/playedDecks/${archetype}`);
   }
 
+
+  postCardError(cardCode: string): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/decks/cardError`, { cardCode: cardCode });
+  }
+
 }
