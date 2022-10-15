@@ -16,12 +16,12 @@ import { NgChartsModule } from "ng2-charts";
     ArchetypeComponent,
     HomeComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        NgChartsModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    NgChartsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
