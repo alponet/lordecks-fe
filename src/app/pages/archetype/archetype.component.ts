@@ -55,11 +55,13 @@ export class ArchetypeComponent implements OnInit {
             style: 'percent',
             maximumFractionDigits: 1,
             minimumFractionDigits: 1
-          }
+          },
         },
         grid: {
           display: false
-        }
+        },
+        min: 0,
+        max: 1
       },
       yr: {
         position: "right",
@@ -72,7 +74,9 @@ export class ArchetypeComponent implements OnInit {
         },
         grid: {
           display: false
-        }
+        },
+        min: 0,
+        max: 0.2
       }
     }
   };
